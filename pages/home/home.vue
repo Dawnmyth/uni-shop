@@ -1,5 +1,10 @@
 <template>
   <view>
+    <view class="search-box">
+    <!-- 自定义组件 可以指定边框圆角的大小和背景颜色 -->
+      <search bgcolor="#c00000" radius="18" @click="gotoSearch">></search>
+    </view>
+    
     <!-- 轮播图 -->
     <swiper :indicator-dots="true" :autoplay="true" :interval="3000" :duration="1000" :circular="true">
       <swiper-item v-for="(item,i) in swiperList" :key='i'>
@@ -84,12 +89,24 @@
             url: '/pages/cate/cate'
           })
         }
+      },
+      gotoSearch() {
+        uni.navigateTo({
+          url: '/subpkg/goods_search/goods_search'
+        })
       }
     }
   }
 </script>
 
 <style lang="scss">
+  .search-box {
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+  }
+  
   swiper{
     height: 330rpx;
     .swiper-item,image {

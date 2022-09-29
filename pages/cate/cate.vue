@@ -1,10 +1,13 @@
 <template>
   <view>
+    <!-- 自定义组件 可以指定边框圆角的大小和背景颜色 -->
+    <search bgcolor="#c00000" radius="18" @click="gotoSearch">></search>
     <view class="scroll-view-container">
       <scroll-view scroll-y="true" class="left-scroll-view" :style="{height: wh + 'px'}">
         <block v-for="(item,i) in cateList" :key="i">
           <view :class="['left-scroll-view-item', i === active ? 'active' : '']" @click="activeChange(i)">
-            {{item.cat_name}}</view>
+            {{item.cat_name}}
+          </view>
         </block>
       </scroll-view>
       <scroll-view scroll-y="true" class="right-scroll-view" :style="{height: wh + 'px'}" :scroll-top="scrollTop">
@@ -47,7 +50,7 @@
       // 获得当前设备信息
       const sysInfo = uni.getSystemInfoSync()
       // 动态赋值wh可用高度
-      this.wh = sysInfo.windowHeight
+      this.wh = sysInfo.windowHeight - 50
 
       this.getCateList()
     },
@@ -66,13 +69,18 @@
         this.active = i
         // 重新为二级分类赋值
         this.cateListl2 = this.cateList[i].children
-        
+
         // 让scrollTop 的值在0、1px之间切换
         this.scrollTop = this.scrollTop ? 0 : 1
       },
       gotoGoodList(item3) {
         uni.navigateTo({
-          url:'/subpkg/goods_list/goods_list?cid=' + item3.cat_id
+          url: '/subpkg/goods_list/goods_list?cid=' + item3.cat_id
+        })
+      },
+      gotoSearch() {
+        uni.navigateTo({
+          url: '/subpkg/goods_search/goods_search'
         })
       }
     }

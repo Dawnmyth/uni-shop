@@ -33,6 +33,13 @@
       "path": "goods_list/goods_list",
       "style": {}
 
+    }, {
+      "path": "goods_search/goods_search",
+      "style": {
+        "navigationBarTitleText": "",
+        "enablePullDownRefresh": false
+      }
+
     }]
   }],
   "globalStyle": {
