@@ -57,9 +57,7 @@
     methods: {
       async getCateList() {
         // 一级分类数据获取
-        const {
-          data: res
-        } = await uni.$http.get('/api/public/v1/categories')
+        const { data: res } = await uni.$http.get('/api/public/v1/categories')
         if (res.meta.status !== 200) return uni.$showMsg()
         this.cateList = res.message
         // 默认二级分类数据获取
